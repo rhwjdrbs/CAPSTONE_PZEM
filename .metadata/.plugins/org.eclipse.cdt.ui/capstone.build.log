@@ -1,0 +1,44 @@
+20:20:12 **** Incremental Build of configuration Debug for project capstone ****
+make -j18 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:1: warning: implicit declaration of function 'HAL_TIM_Base_Start_IT'; did you mean 'HAL_DMA_Start_IT'? [-Wimplicit-function-declaration]
+  101 | HAL_TIM_Base_Start_IT(&htim1);
+      | ^~~~~~~~~~~~~~~~~~~~~
+      | HAL_DMA_Start_IT
+../Core/Src/main.c:101:24: error: 'htim1' undeclared (first use in this function)
+  101 | HAL_TIM_Base_Start_IT(&htim1);
+      |                        ^~~~~
+../Core/Src/main.c:101:24: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:102:1: warning: implicit declaration of function 'HAL_TIM_PWM_Start'; did you mean 'HAL_PCD_Start'? [-Wimplicit-function-declaration]
+  102 | HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+      | ^~~~~~~~~~~~~~~~~
+      | HAL_PCD_Start
+../Core/Src/main.c:102:27: error: 'TIM_CHANNEL_1' undeclared (first use in this function); did you mean 'DAC2_CHANNEL_1'?
+  102 | HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+      |                           ^~~~~~~~~~~~~
+      |                           DAC2_CHANNEL_1
+../Core/Src/main.c: In function 'TIM1_UP_TIM16_IRQHandler':
+../Core/Src/main.c:107:9: warning: implicit declaration of function 'HAL_TIM_IRQHandler'; did you mean 'HAL_PCD_IRQHandler'? [-Wimplicit-function-declaration]
+  107 |         HAL_TIM_IRQHandler(&htim1);
+      |         ^~~~~~~~~~~~~~~~~~
+      |         HAL_PCD_IRQHandler
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:333:36: error: unknown type name 'TIM_HandleTypeDef'; did you mean 'RTC_HandleTypeDef'?
+  333 | void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim){
+      |                                    ^~~~~~~~~~~~~~~~~
+      |                                    RTC_HandleTypeDef
+../Core/Src/main.c: In function 'Error_Handler':
+../Core/Src/main.c:358:7: warning: 'main' is normally a non-static function [-Wmain]
+  358 |   int main(void)
+      |       ^~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:358:7: warning: 'main' defined but not used [-Wunused-function]
+../Core/Src/main.c:105:6: warning: 'TIM1_UP_TIM16_IRQHandler' defined but not used [-Wunused-function]
+  105 | void TIM1_UP_TIM16_IRQHandler(void)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j18 all" terminated with exit code 2. Build might be incomplete.
+
+20:20:13 Build Failed. 4 errors, 6 warnings. (took 921ms)
+

@@ -1,0 +1,17 @@
+23:56:30 **** Incremental Build of configuration Debug for project test1 ****
+make -j18 all 
+arm-none-eabi-gcc "../Core/Src/lcd_i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/lcd_i2c.d" -MT"Core/Src/lcd_i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/lcd_i2c.o"
+arm-none-eabi-gcc -o "test1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\jinsu\STM32CubeIDE\workspace_1.19.0\test1\STM32F303ZETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test1.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: test1.elf
+ 
+arm-none-eabi-size  test1.elf 
+arm-none-eabi-objdump -h -S test1.elf  > "test1.list"
+   text	   data	    bss	    dec	    hex	filename
+  33164	    468	   2308	  35940	   8c64	test1.elf
+Finished building: default.size.stdout
+ 
+Finished building: test1.list
+ 
+
+23:56:32 Build Finished. 0 errors, 0 warnings. (took 2s.532ms)
+

@@ -1,0 +1,4 @@
+../Core/Src/pzem004t.c:17:10:PZEM_CRC16	4
+../Core/Src/pzem004t.c:41:13:PZEM_BuildReadFrame	1
+../Core/Src/pzem004t.c:65:17:PZEM_Parse32	1
+../Core/Src/pzem004t.c:73:15:PZEM_ReadMeasurements	10

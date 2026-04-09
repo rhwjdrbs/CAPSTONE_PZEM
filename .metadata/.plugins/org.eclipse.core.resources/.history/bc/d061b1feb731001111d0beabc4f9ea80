@@ -1,0 +1,65 @@
+#include "main.h"
+#include <string.h>
+#include <stdio.h>
+
+UART_HandleTypeDef huart1; // PZEM
+UART_HandleTypeDef huart2; // Debug
+
+uint8_t pzem_req[8]  = {0x01, 0x04, 0x00, 0x00, 0x00, 0x0A, 0x70, 0x0D};
+uint8_t pzem_resp[32];
+char dbg[128];
+
+void Debug_Print(char *msg)
+{
+    HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 1000);
+}
+
+int main(void)
+{
+    HAL_Init();
+    SystemClock_Config();
+    MX_GPIO_Init();
+    MX_USART1_UART_Init();
+    MX_USART2_UART_Init();
+
+    Debug_Print("PZEM test start\r\n");
+
+    while (1)
+    {
+        memset(pzem_resp, 0, sizeof(pzem_resp));
+
+        if (HAL_UART_Transmit(&huart1, pzem_req, 8, 1000) == HAL_OK)
+        {
+            Debug_Print("TX OK\r\n");
+        }
+        else
+        {
+            Debug_Print("TX FAIL\r\n");
+        }
+
+        HAL_Delay(100);
+
+        HAL_StatusTypeDef rx_status = HAL_UART_Receive(&huart1, pzem_resp, 25, 1000);
+
+        if (rx_status == HAL_OK)
+        {
+            Debug_Print("RX OK: ");
+            for (int i = 0; i < 25; i++)
+            {
+                sprintf(dbg, "%02X ", pzem_resp[i]);
+                Debug_Print(dbg);
+            }
+            Debug_Print("\r\n");
+        }
+        else if (rx_status == HAL_TIMEOUT)
+        {
+            Debug_Print("RX TIMEOUT\r\n");
+        }
+        else
+        {
+            Debug_Print("RX ERROR\r\n");
+        }
+
+        HAL_Delay(2000);
+    }
+}
