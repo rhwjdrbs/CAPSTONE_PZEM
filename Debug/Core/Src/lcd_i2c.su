@@ -1,0 +1,8 @@
+../Core/Src/lcd_i2c.c:21:19:LCD_IsPresent	8	static
+../Core/Src/lcd_i2c.c:26:26:LCD_Write4Bits	32	static
+../Core/Src/lcd_i2c.c:40:26:LCD_SendInternal	24	static
+../Core/Src/lcd_i2c.c:55:19:LCD_Init	16	static
+../Core/Src/lcd_i2c.c:98:19:LCD_Clear	16	static
+../Core/Src/lcd_i2c.c:108:19:LCD_SetCursor	24	static
+../Core/Src/lcd_i2c.c:118:19:LCD_Print	24	static
+../Core/Src/lcd_i2c.c:135:19:LCD_PrintAt	24	static
